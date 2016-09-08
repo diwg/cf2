@@ -1,0 +1,112 @@
+netcdf group_cf_traj_prof{
+// global attributes:
+        :title = "Group vertical profile" ;
+        :institution = "TBD" ;
+        :source = "TBD" ;
+        :references = "http://TBD" ;
+        :user_manual_version = "3.1" ;
+        :Conventions = "CF-2.0?" ;
+        :featureType = "trajectoryProfile" ;
+
+dimensions:
+    STRING4 = 4;
+    STRING8 = 8;
+    STRING64 = 64;
+variables:
+	char FORMAT_VERSION(STRING4) ;
+        FORMAT_VERSION:long_name = "File format version" ;
+        FORMAT_VERSION:_FillValue = " " ;
+    char HANDBOOK_VERSION(STRING4) ;
+        HANDBOOK_VERSION:long_name = "Data handbook version" ;
+        HANDBOOK_VERSION:_FillValue = " " ;
+	char PLATFORM_NUMBER(STRING8) ;
+        PLATFORM_NUMBER:long_name = "Float unique identifier" ;
+        PLATFORM_NUMBER:conventions = "WMO float identifier : A9IIIII" ;
+        PLATFORM_NUMBER:_FillValue = " " ;
+    char PROJECT_NAME(STRING64) ;
+        PROJECT_NAME:long_name = "Name of the project" ;
+        PROJECT_NAME:_FillValue = " " ;
+    char PI_NAME(STRING64) ;
+        PI_NAME:long_name = "Name of the principal investigator" ;
+        PI_NAME:_FillValue = " " ;
+data: 
+    FORMAT_VERSION = "3.1 " ;
+    HANDBOOK_VERSION = "1.2 ";
+    PLATFORM_NUMBER = "1900083 ";
+    PROJECT_NAME ="TBD";
+    PI_NAME= "TBD";
+	
+group: c1 {
+ dimensions:
+       N_LEVELS = 3;
+ variables:
+   double LATITUDE;
+        LATITUDE:long_name = "Latitude of the station, best estimate" ;
+        LATITUDE:standard_name = "latitude" ;
+        LATITUDE:units = "degree_north" ;
+        LATITUDE:_FillValue = 99999. ;
+        LATITUDE:valid_min = -90. ;
+        LATITUDE:valid_max = 90. ;
+        LATITUDE:axis = "Y" ;
+   double LONGITUDE;
+        LONGITUDE:long_name = "Longitude of the station, best estimate" ;
+        LONGITUDE:standard_name = "longitude" ;
+        LONGITUDE:units = "degree_east" ;
+        LONGITUDE:_FillValue = 99999. ;
+        LONGITUDE:valid_min = -180. ;
+        LONGITUDE:valid_max = 180. ;
+        LONGITUDE:axis = "X" ;
+   float TEMP(N_LEVELS) ;
+        TEMP:long_name = "Sea temperature in-situ ITS-90 scale" ;
+        TEMP:standard_name = "sea_water_temperature" ;
+        TEMP:units = "degree_Celsius" ;
+        TEMP:valid_min = "-2.5" ;
+        TEMP:valid_max = "40.0" ;
+        TEMP:_FillValue = 99999.f ;
+        TEMP:C_format = "%9.3f" ;
+        TEMP:FORTRAN_format = "F9.3" ;
+        TEMP:resolution = "0.001f" ;
+         
+data:
+       LATITUDE = -29.5;
+       LONGITUDE = 34.7;
+       TEMP = 19.7, 19.1,18.5;
+ }
+group: c2 {
+ dimensions:
+       N_LEVELS = 4;
+ variables:
+   double LATITUDE;
+        LATITUDE:long_name = "Latitude of the station, best estimate" ;
+        LATITUDE:standard_name = "latitude" ;
+        LATITUDE:units = "degree_north" ;
+        LATITUDE:_FillValue = 99999. ;
+        LATITUDE:valid_min = -90. ;
+        LATITUDE:valid_max = 90. ;
+        LATITUDE:axis = "Y" ;
+   double LONGITUDE;
+        LONGITUDE:long_name = "Longitude of the station, best estimate" ;
+        LONGITUDE:standard_name = "longitude" ;
+        LONGITUDE:units = "degree_east" ;
+        LONGITUDE:_FillValue = 99999. ;
+        LONGITUDE:valid_min = -180. ;
+        LONGITUDE:valid_max = 180. ;
+        LONGITUDE:axis = "X" ;
+   float TEMP(N_LEVELS) ;
+        TEMP:long_name = "Sea temperature in-situ ITS-90 scale" ;
+        TEMP:standard_name = "sea_water_temperature" ;
+        TEMP:units = "degree_Celsius" ;
+        TEMP:valid_min = "-2.5" ;
+        TEMP:valid_max = "40.0" ;
+        TEMP:_FillValue = 99999.f ;
+        TEMP:C_format = "%9.3f" ;
+        TEMP:FORTRAN_format = "F9.3" ;
+        TEMP:resolution = "0.001f" ;
+         
+data:
+       LATITUDE = -29.273;
+       LONGITUDE = 34.601;
+       TEMP = 22.8, 21.1,20.1,19.3;
+ }
+
+}
