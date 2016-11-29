@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2"
+  location="car-trajectory.nc4">
+  <dimension name="time" length="22951" orgName="fakeDim0"/>
+  <dimension name="angel" length="361" orgName="fakeDim9"/>
+  <dimension name="NumberOfChannels" length="14" orgName="fakeDim38"/>
+</netcdf>
