@@ -16,9 +16,9 @@ The original netCDF-3 file and the corresponding vlen netCDF-4 file can be found
    I downloaded the original netCDF file from the argo-float data ftp site 
    under ftp://usgodae.org/pub/outgoing/argo/latest_data/
    Since they frequently update their latest_data directory, I put all the original example files under
-   ftp://ftp.hdfgroup.uiuc.edu/pub/outgoing/ymuqun/earth-cube/DSG/argo-float/cf-groups/orig-files/20161027/
+   ftp://gamma.hdfgroup.org/pub/outgoing/ymuqun/earth-cube/DSG/argo-float/cf-groups/orig-files/20161027/
 
 
    The final combined netCDF-4 file can be found under 
-   ftp://ftp.hdfgroup.uiuc.edu/pub/outgoing/ymuqun/earth-cube/DSG/argo-float/cf-groups/R20161027_prof_all.nc
+   ftp://gamma.hdfgroup.org/pub/outgoing/ymuqun/earth-cube/DSG/argo-float/cf-groups/R20161027_prof_all.nc
 

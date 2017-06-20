@@ -11,10 +11,10 @@ The original netCDF-3 file and the corresponding vlen netCDF-4 file can be found
    I downloaded the original netCDF file from the argo-float data ftp site 
    under ftp://usgodae.org/pub/outgoing/argo/latest_data/
    Since they frequently update their latest_data directory, I put a copy of the example file under
-   ftp://ftp.hdfgroup.uiuc.edu/pub/outgoing/ymuqun/earth-cube/DSG/argo-float/vlen/20160901_prof.nc
+   ftp://gamma.hdfgroup.org/pub/outgoing/ymuqun/earth-cube/DSG/argo-float/vlen/20160901_prof.nc
 
    The final netCDF-4 file with vlen can be found under 
-   ftp://ftp.hdfgroup.uiuc.edu/pub/outgoing/ymuqun/earth-cube/DSG/argo-float/vlen/20160901_prof_vlen.nc4
+   ftp://gamma.hdfgroup.org/pub/outgoing/ymuqun/earth-cube/DSG/argo-float/vlen/20160901_prof_vlen.nc4
 
 The following explains the steps to use NCO to prepare the vlen type netCDF file.
 
