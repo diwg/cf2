@@ -1,15 +1,30 @@
 # CF2
-Enhancing Climate-Forecast (CF) Conventions with Group Hierarchies
+
+There are multiple efforts to extend the Climate-Forecast (CF) metadata convention.
+The National Science Foundation (NSF) supports the EarthCube "Advancing netCDF-CF for the Geoscience Community" [project](https://github.com/Unidata/EC-netCDF-CF) that organizes some of these efforts.
+Project members have gathered scientific use-cases and example datasets (such as [these](https://github.com/diwg/diwg) to guide the drafting of documents detailing enhancements to the CF standard.
+Since some of the enhancements break backwards compatibility with CF, this effort is loosely known as "CF2", although no formal relation between CF2 and CF yet exists.
+One important proposed extension to CF the Swath proposal, more formally "Encoding of Swath Data in the Climate and Forecast Convention". It is available (here)[https://github.com/Unidata/EC-netCDF-CF/blob/master/swath/swath.adoc].
+Another important CF2 proposal is the Group proposal, more formally "CF2-Group: Draft Extension for Files with Groups". It is stored in this repository.
+Also located in this repository, at the bottom of this page, are notes on Discrete Sampling Geometries taken at the CF2 meeting in September, 2017.
+
+# CF2-Group
+
+CF2-Group: Draft Extension for Files with Groups
 
 ## Previous Work
 
-Some pertinent discussions:
+The earliest pertinent discussions to utilizing Groups in CF2 were conducted as part of NASA Dataset Interoperability Working Group (DIWG) efforts dating back to 2013:
 
 http://mailman.cgd.ucar.edu/pipermail/cf-metadata/2013/056827.html
+
+These efforts migrated to the EarthCube project from 2015-2018, when the CF2-Group draft proposal was collaboratively shared as a Google Doc:
 
 https://docs.google.com/document/d/1onf6yJAF6h2_idaQJWKcBPcaHE9WRs4ZUcbidZflgZI/edit
 
 https://docs.google.com/document/d/1Hfgw-jDuJrmsmHXRsUxjrrzuyA8tWwosZTIC-byryGU/edit
+
+Prior to its final submission to the CF list in April, 2018, the CF2-Group proposal was converted to AsciiDoc and is hosted here, in this repository.
 
 # CF2 and Discrete Sampling Geometries
 
