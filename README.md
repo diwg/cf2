@@ -3,9 +3,10 @@
 There are multiple efforts to extend the Climate-Forecast (CF) metadata convention.
 The National Science Foundation (NSF) supports the EarthCube "Advancing netCDF-CF for the Geoscience Community" [project](https://github.com/Unidata/EC-netCDF-CF) that organizes some of these efforts.
 Project members have gathered scientific use-cases and example datasets (including [these](https://github.com/diwg/diwg)) to guide the drafting of enhancements to the CF standard.
-Since some of the enhancements break backwards compatibility with CF, this effort is loosely known as "CF2", although no formal relation between CF2 and CF yet exists.
+Since some proposed enhancements break backwards compatibility with CF, this effort is loosely known as "CF2", although no formal relation between CF2 and CF yet exists.
 One important proposed extension to CF the Swath [proposal](https://github.com/Unidata/EC-netCDF-CF/blob/master/swath/swath.adoc), more formally "Encoding of Swath Data in the Climate and Forecast Convention".
 Another important CF2 proposal is the Group [proposal](https://github.com/diwg/cf2/blob/master/group/cf2-group.adoc), more formally "CF2-Group: Draft Extension for Files with Groups".
+The Swath proposal allows for features described in the Group proposal, though it can be implemented without those features.
 Some notes on CF extensions for Discrete Sampling Geometries (DSG) are also archived below.
 
 # CF2-Group
