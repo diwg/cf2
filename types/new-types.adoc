@@ -1,0 +1,45 @@
+= Use of netCDF-4 data types in CF-2 files
+Daniel Lee
+:toc: left
+:toclevels: 4
+:sectnums:
+:icons: font
+:linkattrs:
+:data-uri:
+:source-highlighter: pygments
+
+== Summary
+
+This document proposes using new data types which are available in netCDF-4 in files which conform to the CF Conventions.
+
+The netCDF-4 standard allows the use of several new data types which were not available when the CF Conventions were written.
+
+.Atomic external types
+* `NC_USHORT` 16-bit unsigned integer
+* `NC_UINT` 32-bit unsigned integer
+* `NC_INT64` 64-bit signed integer
+* `NC_UINT64` 64-bit unsigned integer
+* `NC_STRING` variable length character string
+
+.User-defined types
+* Compound types
+* VLEN types
+* Opaque types
+* Enum types
+
+These types have the potential to allow data producers to encode data with greater accuracy, succinctness expressivity.
+
+Despite these advantages, allowing too many options for encoding data creates the risk of data producers encoding products which users cannot easily read. Therefore, the aim of this proposal is to describe the use of some simple data types which can be interpreted in a straightforward fashion, rather than opening up the use of the full expressive breadth of netCDF-4 for use within the CF Conventions.
+
+Data which makes use of this proposal shall adhere to the following principals:
+
+- All netCDF atomic external types are acceptable.
+- Enum types may be used, but only if they resolve to an atomic external type at the end.
+- Other user-defined types (compound, VLEN and opaque types) are out of the scope of this proposal.
+
+Additionally, the following good practices are encouraged:
+
+- Because unsigned types are now technically possible, the use of signed types to describe data which is by nature unsigned, together with the attributes `valid_min` and `valid_max`, or `valid_range`, is discouraged. Instead, data should be represented in the type which best matches the "real data".
+- Likewise, the use of character arrays to express string-like data is discouraged; instead, the type `NC_STRING` should be used.
+
+Files indicate adherence to this proposal with a `Conventions` attribute which includes the string `"CF2-Types-X"`, where `X` is the release of this standard which is adhered to.
