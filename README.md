@@ -11,13 +11,16 @@ Notable proposed extensions include:
 - [Use of netCDF-4 data types in CF-2 files](https://github.com/diwg/cf2/blob/master/types/new-types.adoc)
 
 The Swath proposal allows for features described in the Group proposal, though it can be implemented without those features.
-Some notes on CF extensions for Discrete Sampling Geometries (DSG) are also archived below.
+Both the Swath and the Group proposals were endorsed/approved (in close to their current form) by participants at the 2017 CF2 Workshop in Boulder, and, more recently by NASA's Dataset Interoperability Working Group (DIWG) in 2018. 
+We welcome new efforts and contributions to ongoing efforts that improve dataset interoperability.
 
 # CF2-Group
 
 ## Current Draft
 
 [CF2-Group: Draft Extension for Files with Groups](https://github.com/diwg/cf2/blob/master/group/cf2-group.adoc)
+
+The Group proposal is compatible with most existing NASA and ESA satellite datasets. NCO 4.7.4 contains a working implementation of the algorithms to locate Out-of-Group (OOG) identifiers, and may be used to vet datasets designed to comply with CF2-Group. 
 
 ## Previous Work
 
@@ -31,6 +34,8 @@ This effort migrated to the EarthCube project from 2015-2018, when the CF2-Group
 Google doc [proposal](https://docs.google.com/document/d/1KK6IZ2ZmpaUTVgrw-GlFd6almppjvGz6D7nxVTO3BtI/edit)
 
 # CF2 and Discrete Sampling Geometries (DSG)
+
+Some notes on CF extensions for Discrete Sampling Geometries (DSG) are archived below.
 
 201605 DSG [notes](https://docs.google.com/document/d/1onf6yJAF6h2_idaQJWKcBPcaHE9WRs4ZUcbidZflgZI/edit)
 
