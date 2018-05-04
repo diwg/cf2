@@ -10,7 +10,14 @@ Daniel Lee
 
 == Summary
 
-This document proposes using new data types which are available in netCDF-4 in files which conform to the CF Conventions.
+////
+TODO: Refer to #166 - https://cf-trac.llnl.gov/trac/ticket/166
+Resolve the stuff people have talked about there.
+Maybe adopt the wording at the top of the ticket. Note that netCDF-3 also
+supported some stuff.
+////
+
+This document proposes using new data types which are available in netCDF-4 (and to a certain extent in netCDF Classic) in files which conform to the CF Conventions. It draws heavily from the CF-1 proposal https://cf-trac.llnl.gov/trac/ticket/166[Add new integer types to CF] and attempts to incorporate all relevant material and comments. Less efforts are made to support compatibility with netCDF-3, as CF-2 makes heavy use of features only available in netCDF-4.
 
 The netCDF-4 standard allows the use of several new data types which were not available when the CF Conventions were written.
 
@@ -33,13 +40,15 @@ Despite these advantages, allowing too many options for encoding data creates th
 
 Data which makes use of this proposal shall adhere to the following principals:
 
-- All netCDF atomic external types are acceptable.
-- Enum types may be used, but only if they resolve to an atomic external type at the end.
-- Other user-defined types (compound, VLEN and opaque types) are out of the scope of this proposal.
+- All netCDF atomic external types (`char`, `byte`, `unsigned byte`, `short`, `unsigned short`, `int`, `unsigned int`, `int64`, `unsigned int64`, `float` or `real`, `double`, and `string`) are acceptable.
+- `enum` types may be used, but only if they resolve to an atomic external type at the end.
+- Other user-defined types (`compound`, `VLEN` and `opaque` types) are out of the scope of this proposal.
 
 Additionally, the following good practices are encouraged:
 
 - Because unsigned types are now technically possible, the use of signed types to describe data which is by nature unsigned, together with the attributes `valid_min` and `valid_max`, or `valid_range`, is discouraged. Instead, data should be represented in the type which best matches the "real data".
 - Likewise, the use of character arrays to express string-like data is discouraged; instead, the type `NC_STRING` should be used.
+- One byte numeric data should be stored using the byte or unsigned byte data types.
+- The char type is not intended for numeric data.
 
 Files indicate adherence to this proposal with a `Conventions` attribute which includes the string `"CF2-Types-X"`, where `X` is the release of this standard which is adhered to.
