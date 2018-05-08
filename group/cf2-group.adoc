@@ -16,6 +16,9 @@ Charlie Zender, Daniel Lee
 == Summary
 
 This documents proposes "CF2" Conventions called CF2-Group to support files with groups.
+The details of the proposal can be found on the following lines.
+These are followed by non-binding best practices and, finally, by usage examples.
+
 Group files are those which utilize the "group" features of the Common Data Model (CDM) as implemented in netCDF4.
 Such files can contain hierarchical directory-like structures not possible with the single, flat namespace described by CF1.
 
@@ -34,6 +37,16 @@ This allows CF2-Group files to be used (after "flattening" or "dismemberment") w
 CF2-Group exploits organizational rules of group hierarchies including scoping and inheritance of ancestor properties.
 Thus CF2-Group files need not include any absolute pathnames to coordinates, dimensions, and attributes.
 
+== Glossary
+
+*Most proximal identifier -*
+
+*Referring group -*
+
+*Out of group reference -*
+
+*Local apex group -*
+
 == Attributes
 
 CF2-Group distinguishes between Global and Group attributes.
@@ -51,50 +64,6 @@ They apply to the group where they are defined and to that group's descendents, 
 Group Attributes apply to all of that group's descendents recursively with an exception: Any group may redefine an attribute defined in an ancestor group, and that child group's definition applies to all its descendents.
 Thus in cases where multiple ancestor groups define the same attribute, attribute values are inherited from the nearest ancestor.
 These are the same scoping properties as dimensions in the extended Common Data Model (e.g., as implemented in netCDF4) and in many programming languages.
-
-== Glossary
-
-*Most proximal identifier -*
-
-*Referring group -*
-
-*Out of group reference -*
-
-*Local apex group -*
-
-== Best Practices
-
-. CF2 Group files may contain all netCDF4 atomic types, though not the netCDF4 "non-atomic" types.
-Atomic types are the netCDF Classic types, plus the newer netCDF4 integer types (`ubyte`, `ushort`, `uint`, `uint64`, `int64`), and strings.
-These types are all first-class citizens in CF2-Group.
-The newer netCDF4 atomic types can be converted to a netCDF Classic type when necessary, though the conversion may lose information and/or range when the data exceed the bounds of the smaller type.
-netCDF4 Extended files can also contain "non-atomic" types, including enumerated (`enum_t`), variable length (`vlen_t`), opaque, compound, and user-defined types.
-These non-atomic types are more difficult to approximate with the Classic data model, and should be avoided entirely when CF1-compliance is important.
-It is anticipated that future versions of CF2 Group will allow some non-atomic types, as the ecosystem of tools and services evolves to accommodate them.
-
-. The use of Group Attributes to store metadata normally attached directly to variables is discouraged.
-This includes, for example, replacing per-variable attributes like `_FillValue`, `scale_factor`, `valid_min`, with group-level equivalents.
-Although group attributes might be more concise, it is likely to create problems with downstream software and reduce interoperability.
-
-. Any metadata content embedded in a group name must be redundantly stored in a group attribute so that moving or renaming the group does not result in information loss.
-Each group's attributes, dimensions and variables should be self-contained in combination with the group metadata and any inherited properties (e.g., dimension sizes, coordinates).
-This ensures that if a group is renamed or extracted (with any inherited properties) into a new file, its information content is preserved.
-For example, storage of ensembles as sibling groups (as described below) is often clearer when the realization number is encoded in the group name.
-In this case, the `Realization` group attribute retains the realization number even if the group is renamed.
-Other commonly enumerated group names, such as station identifiers, buoy numbers, or channel wavelengths are analogous.
-It is fine to enumerate or itemize names so long as the number or name is redundantly stored as a group attribute.
-
-. Renaming or moving a group or self-contained branch of groups to a new location should not affect the interpretation of data.
-Since relative and absolute paths (containing "/") of coordinates, dimensions, and attributes are fragile, it is preferred they not be present in attributes.
-Instead, named objects resolve to the most proximal object (i.e., dimension or variable) of that name that has the referring attribute within its scope (heritable domain).
-This makes CF2-Group files amenable to sub-setting and aggregation.
-For example, the CF `coordinates` attribute identifies a variable's coordinates in a whitespace-separated list such as `"lat lon"`.
-When the coordinates are outside the group that contains the `coordinates` attribute, it is tempting to store the coordinate locations as full, unambiguous paths such as `"/g1/lat /g1/lon"`, or as relative paths such as `"g1/lat g1/lon"`.
-However, paths that contain slashes must be explicitly altered when the variable is subset into a new file with a different group hierarchy, or when the hierarchy is flattened.
-CF attributes affected by this practice include `ancillary_variables`, `bounds`, `cell_measures`, `climatology`,  `coordinates`, `formula_terms`, and `grid_mapping`.
-The simpler `"lat lon"` specification works without alteration in all situations for out-of-group locations so long as it is understood to mean the nearest identifiers that have the referring variable in their scope.
-Utilizing scope in preference to absolute and relative paths is a best practice, and is not a requirement of CF2-Group.
-It is legal to identify out-of-group variables by an absolute or relative path.
 
 == Scope
 
@@ -144,6 +113,40 @@ This scoping algorithm, a direct-ancestor followed by width-wise search from the
 [[alg_cf2_oog,{figure-caption} {counter:figure-num}]]
 .Demonstration of search algorithm to locate most proximal out-of-group coordinate. The referring group `sci/g1` contains a variable with a `coordinates` attribute with value `"lat lon"`, say. The precedence of each group in the hierarchy beneath the apex group is indicated by the circled number, beginning with the referring group which has the highest precedence. If a coordinate variable is not found in the referring group, and it is not specified by a relative or absolute path, then a direct-ancestor followed by width-wise search is performed. The search proceeds up through each direct ancestor until the apex group (where the dimension is defined) is reached. If a coordinate is not found among the direct ancestors, then a width-wise search is performed level-by-level through the hierarchy. Here the width-wise search commences with the `/geo` group. NASA datasets often separate geolocation coordinates from science data, and store coordinates in a sibling group to the science data as shown.
 image::images/alg_cf2_oog.png[alt]
+
+== Best Practices
+
+. CF2 Group files may contain all netCDF4 atomic types, though not the netCDF4 "non-atomic" types.
+Atomic types are the netCDF Classic types, plus the newer netCDF4 integer types (`ubyte`, `ushort`, `uint`, `uint64`, `int64`), and strings.
+These types are all first-class citizens in CF2-Group.
+The newer netCDF4 atomic types can be converted to a netCDF Classic type when necessary, though the conversion may lose information and/or range when the data exceed the bounds of the smaller type.
+netCDF4 Extended files can also contain "non-atomic" types, including enumerated (`enum_t`), variable length (`vlen_t`), opaque, compound, and user-defined types.
+These non-atomic types are more difficult to approximate with the Classic data model, and should be avoided entirely when CF1-compliance is important.
+It is anticipated that future versions of CF2 Group will allow some non-atomic types, as the ecosystem of tools and services evolves to accommodate them.
+
+. The use of Group Attributes to store metadata normally attached directly to variables is discouraged.
+This includes, for example, replacing per-variable attributes like `_FillValue`, `scale_factor`, `valid_min`, with group-level equivalents.
+Although group attributes might be more concise, it is likely to create problems with downstream software and reduce interoperability.
+
+. Any metadata content embedded in a group name must be redundantly stored in a group attribute so that moving or renaming the group does not result in information loss.
+Each group's attributes, dimensions and variables should be self-contained in combination with the group metadata and any inherited properties (e.g., dimension sizes, coordinates).
+This ensures that if a group is renamed or extracted (with any inherited properties) into a new file, its information content is preserved.
+For example, storage of ensembles as sibling groups (as described below) is often clearer when the realization number is encoded in the group name.
+In this case, the `Realization` group attribute retains the realization number even if the group is renamed.
+Other commonly enumerated group names, such as station identifiers, buoy numbers, or channel wavelengths are analogous.
+It is fine to enumerate or itemize names so long as the number or name is redundantly stored as a group attribute.
+
+. Renaming or moving a group or self-contained branch of groups to a new location should not affect the interpretation of data.
+Since relative and absolute paths (containing "/") of coordinates, dimensions, and attributes are fragile, it is preferred they not be present in attributes.
+Instead, named objects resolve to the most proximal object (i.e., dimension or variable) of that name that has the referring attribute within its scope (heritable domain).
+This makes CF2-Group files amenable to sub-setting and aggregation.
+For example, the CF `coordinates` attribute identifies a variable's coordinates in a whitespace-separated list such as `"lat lon"`.
+When the coordinates are outside the group that contains the `coordinates` attribute, it is tempting to store the coordinate locations as full, unambiguous paths such as `"/g1/lat /g1/lon"`, or as relative paths such as `"g1/lat g1/lon"`.
+However, paths that contain slashes must be explicitly altered when the variable is subset into a new file with a different group hierarchy, or when the hierarchy is flattened.
+CF attributes affected by this practice include `ancillary_variables`, `bounds`, `cell_measures`, `climatology`,  `coordinates`, `formula_terms`, and `grid_mapping`.
+The simpler `"lat lon"` specification works without alteration in all situations for out-of-group locations so long as it is understood to mean the nearest identifiers that have the referring variable in their scope.
+Utilizing scope in preference to absolute and relative paths is a best practice, and is not a requirement of CF2-Group.
+It is legal to identify out-of-group variables by an absolute or relative path.
 
 == Use cases
 
