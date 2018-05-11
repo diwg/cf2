@@ -36,17 +36,22 @@ It is intentionally narrow in scope in order to allow the use of data types whic
 At this time, those types are the atomic external and `enum` types.
 As such, this proposal is not intended to preclude future discussions about the more complex user-defined types (compound, VLEN, and opaque), despite the fact that the proposal is intentionally limited to only a few of the data types that are technically possible.
 
+== Using new data types in CF-2
+
 Data which makes use of this proposal shall adhere to the following principals:
 
 - All netCDF atomic external types (`char`, `byte`, `unsigned byte`, `short`, `unsigned short`, `int`, `unsigned int`, `int64`, `unsigned int64`, `float` or `real`, `double`, and `string`) are acceptable.
 - `enum` types may be used.
 - Other user-defined types (`compound`, `VLEN` and `opaque` types) are out of the scope of this proposal.
 
-Additionally, the following good practices are encouraged:
+Files indicate adherence to this proposal with a `Conventions` attribute which includes the string `"CF2-Types-X"`, where `X` is the release of this standard which is adhered to.
+
+== Good practices
+
+The following good practices are encouraged:
 
 - Because unsigned types are now technically possible, the use of signed types to describe data which is by nature unsigned, together with the attributes `valid_min` and `valid_max`, or `valid_range`, is discouraged. Instead, data should be represented in the type which best matches the "real data".
 - Likewise, the use of character arrays to express string-like data is discouraged; instead, the type `NC_STRING` should be used.
 - One byte numeric data should be stored using the byte or unsigned byte data types.
 - The char type is not intended for numeric data.
 
-Files indicate adherence to this proposal with a `Conventions` attribute which includes the string `"CF2-Types-X"`, where `X` is the release of this standard which is adhered to.
