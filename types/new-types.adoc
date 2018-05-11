@@ -35,7 +35,7 @@ Despite these advantages, allowing too many options for encoding data creates th
 Data which makes use of this proposal shall adhere to the following principals:
 
 - All netCDF atomic external types (`char`, `byte`, `unsigned byte`, `short`, `unsigned short`, `int`, `unsigned int`, `int64`, `unsigned int64`, `float` or `real`, `double`, and `string`) are acceptable.
-- `enum` types may be used, but only if they resolve to an atomic external type at the end.
+- `enum` types may be used.
 - Other user-defined types (`compound`, `VLEN` and `opaque` types) are out of the scope of this proposal.
 
 Additionally, the following good practices are encouraged:
