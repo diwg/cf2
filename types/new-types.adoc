@@ -30,7 +30,11 @@ The netCDF-4 standard allows the use of several new data types which were not av
 
 These types have the potential to allow data producers to encode data with greater accuracy, succinctness expressivity.
 
-Despite these advantages, allowing too many options for encoding data creates the risk of data producers encoding products which users cannot easily read. Therefore, the aim of this proposal is to describe the use of some simple data types which can be interpreted in a straightforward fashion, rather than opening up the use of the full expressive breadth of netCDF-4 for use within the CF Conventions.
+Despite these advantages, allowing too many options for encoding data creates the risk of data producers encoding products which users cannot easily read.
+Therefore, the aim of this proposal is to describe the use of some simple data types which can be interpreted in a straightforward fashion, rather than opening up the use of the full expressive breadth of netCDF-4 for use within the CF Conventions.
+It is intentionally narrow in scope in order to allow the use of data types which past discussions have shown to be fairly uncontroversial, while establishing guidelines for the use of newer data types which will be used by data producers in the foreseeable future.
+At this time, those types are the atomic external and `enum` types.
+As such, this proposal is not intended to preclude future discussions about the more complex user-defined types (compound, VLEN, and opaque), despite the fact that the proposal is intentionally limited to only a few of the data types that are technically possible.
 
 Data which makes use of this proposal shall adhere to the following principals:
 
