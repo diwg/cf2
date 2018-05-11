@@ -10,18 +10,12 @@ Daniel Lee
 
 == Summary
 
-////
-TODO: Refer to #166 - https://cf-trac.llnl.gov/trac/ticket/166
-Resolve the stuff people have talked about there.
-Maybe adopt the wording at the top of the ticket. Note that netCDF-3 also
-supported some stuff.
-////
-
 This document proposes using new data types which are available in netCDF-4 (and to a certain extent in netCDF Classic) in files which conform to the CF Conventions. It draws heavily from the CF-1 proposal https://cf-trac.llnl.gov/trac/ticket/166[Add new integer types to CF] and attempts to incorporate all relevant material and comments. Less efforts are made to support compatibility with netCDF-3, as CF-2 makes heavy use of features only available in netCDF-4.
 
 The netCDF-4 standard allows the use of several new data types which were not available when the CF Conventions were written.
 
 .Atomic external types
+* `NC_UBYTE` 8-bit unsigned integer
 * `NC_USHORT` 16-bit unsigned integer
 * `NC_UINT` 32-bit unsigned integer
 * `NC_INT64` 64-bit signed integer
