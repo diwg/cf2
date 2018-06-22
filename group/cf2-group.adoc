@@ -39,13 +39,13 @@ Thus CF2-Group files need not include any absolute pathnames to coordinates, dim
 
 == Glossary
 
-*Most proximal identifier -*
+*Most proximal identifier -* The identifier of an element which can be reached via the shortest traversal of the file from the referring element following the rules set forth in the Scoping section.
 
-*Referring group -*
+*Referring group -* The group in which a reference to an identifier occurs.
 
-*Out of group reference -*
+*Out of group reference -* A reference to an element which is not contained in the referring group.
 
-*Local apex group -*
+*Local apex group -* The local apex group is the nearest ancestor group to a referring group. The local apex contains the definition of the referred identifier.
 
 == Group names
 
