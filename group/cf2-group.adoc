@@ -152,6 +152,10 @@ The simpler `"lat lon"` specification works without alteration in all situations
 Utilizing scope in preference to absolute and relative paths is a best practice, and is not a requirement of CF2-Group.
 It is legal to identify out-of-group variables by an absolute or relative path.
 
+. When using a grid mapping which is referenced in multiple groups, the reference to the coordinates themselves should be maintained as an attribute of the referencing variables, and not as an attribute of the grid mapping itself. This way the coordinates can resolve to the correct coordinates which are "owned" by the referencing variable, and which are not shared amongst variables, while the grid mapping which is used to interpret the coordinates is stored in only one place. Both coordinates and grid mapping are thus found via regular scoping mechanisms.
++
+A common use case for this is data produced on board a geostationary platform. Different swaths are stored in different groups, each with their own coordinates, but all of which share a common grid mapping for the entire full disk view.
+
 == Use cases
 
 === Collections
