@@ -47,6 +47,11 @@ Thus CF2-Group files need not include any absolute pathnames to coordinates, dim
 
 *Local apex group -*
 
+== Group names
+
+Any metadata content embedded in a group name must be redundantly stored in a group attribute so that moving or renaming the group does not result in information loss.
+This preserves the design principal of making CF2-Group files amenable to flattening, as requiring software to interpret group names would lead to a loss of information if information contained only within the names was discarded.
+
 == Attributes
 
 CF2-Group distinguishes between Global and Group attributes.
@@ -128,8 +133,7 @@ It is anticipated that future versions of CF2 Group will allow some non-atomic t
 This includes, for example, replacing per-variable attributes like `_FillValue`, `scale_factor`, `valid_min`, with group-level equivalents.
 Although group attributes might be more concise, it is likely to create problems with downstream software and reduce interoperability.
 
-. Any metadata content embedded in a group name must be redundantly stored in a group attribute so that moving or renaming the group does not result in information loss.
-Each group's attributes, dimensions and variables should be self-contained in combination with the group metadata and any inherited properties (e.g., dimension sizes, coordinates).
+. Each group's attributes, dimensions and variables should be self-contained in combination with the group metadata and any inherited properties (e.g., dimension sizes, coordinates).
 This ensures that if a group is renamed or extracted (with any inherited properties) into a new file, its information content is preserved.
 For example, storage of ensembles as sibling groups (as described below) is often clearer when the realization number is encoded in the group name.
 In this case, the `Realization` group attribute retains the realization number even if the group is renamed.
