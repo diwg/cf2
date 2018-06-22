@@ -93,16 +93,16 @@ For example, a `coordinates` attribute of `lat` refers to the `lat` variable (if
 If the object is not in the referring group then the identifier is termed an "out-of-group" reference.
 The algorithm that defines the most proximal object for an out-of-group reference is type-specific:
 
-.. Groups: The most proximal group to a given group arises as a search problem when a location is specified with a relative pathname, e.g., the `coordinates` attribute includes `g1/v1`.
+.. *Groups*: The most proximal group to a given group arises as a search problem when a location is specified with a relative pathname, e.g., the `coordinates` attribute includes `g1/v1`.
 The resolution of the relative pathname is described above in item 2.
 
-.. Dimensions: We know of no case where a CF attribute explicitly refers to a dimension by its name.
+.. *Dimensions*: We know of no case where a CF attribute explicitly refers to a dimension by its name.
 Instead CF relies on coordinates that implicitly identify particular dimensions or groups of dimensions.
 A reference to an out-of-group dimension shall be resolved by a direct ancestor search, starting with the parent group and proceeding upward.
 The first dimension found with the given name is the most proximal.
 This algorithm is the same as that implemented for dimension inheritance by the netCDF4 data model (i.e., the CDM).
 
-. Coordinates: Like dimensions, the most proximal coordinate of a given name shall be searched for using a direct ancestor search beginning with the parent group and proceeding upward.
+.. *Coordinates*: Like dimensions, the most proximal coordinate of a given name shall be searched for using a direct ancestor search beginning with the parent group and proceeding upward.
 Unlike dimensions, the search must continue if the named coordinate has not been found in any direct ancestor.
 The coordinate variable must reside in the scope of the dimension(s) it contains, and these dimensions must be the same as those in the variable whose attribute contains the reference.
 These dimensions may be defined in any direct ancestor of the referring group.
